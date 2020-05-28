@@ -43,6 +43,11 @@ provider:
 plugins:
   - serverless-s3-sync
 
+custom:
+  s3Sync:
+    - bucketName: "cereal-bucket"
+      localDir: "upload_files"
+
 functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
@@ -77,3 +82,4 @@ package:
     - node_modules
     - package-lock.json
     - package.json
+    - upload_files
