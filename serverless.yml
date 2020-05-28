@@ -13,7 +13,7 @@
 
 service: aws-s3-file-to-dynamo
 # app and org for use with dashboard.serverless.com
-#app: your-app-name
+app: s3-file-to-dynamo
 #org: your-org-name
 
 # You can pin your service to only deploy with a specific Serverless version
@@ -23,10 +23,23 @@ service: aws-s3-file-to-dynamo
 provider:
   name: aws
   runtime: nodejs12.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        Fn::GetAtt:
+          - cerealTable
+          - Arn
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+
+
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -58,8 +71,10 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  updateDynamoDb:
+    handler: handler.updateDynamoDb
+    name: updateDynamoDb
+    descriptions: Extracts data from S3 and inserts data into DynamoDB
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -111,3 +126,63 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+resources:
+  Resources:
+    cerealTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: "cerealTable"
+        AttributeDefinitions:
+          -
+            AttributeName: "cerealId"
+            AttributeType: "N"
+          -
+            AttributeName: "name"
+            AttributeType: "S"
+          -
+            AttributeName: "calories"
+            AttributeType: "N"
+          -
+            AttributeName: "protein"
+            AttributeType: "N"
+          -
+            AttributeName: "fat"
+            AttributeType: "N"
+          -
+            AttributeName: "sodium"
+            AttributeType: "N"
+          -
+            AttributeName: "fiber"
+            AttributeType: "N"
+          -
+            AttributeName: "carbo"
+            AttributeType: "N"
+          -
+            AttributeName: "sugars"
+            AttributeType: "N"
+          -
+            AttributeName: "potass"
+            AttributeType: "N"
+          -
+            AttributeName: "vitamins"
+            AttributeType: "N"
+          -
+            AttributeName: "shelf"
+            AttributeType: "N"
+          -
+            AttributeName: "weight"
+            AttributeType: "N"
+          -
+            AttributeName: "cups"
+            AttributeType: "N"
+          -
+            AttributeName: "rating"
+            AttributeType: "N"
+        KeySchema:
+          -
+            AttributeName: "cerealId"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: "5"
+          WriteCapacityUnits: "5"
