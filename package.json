@@ -1,0 +1,23 @@
+{
+  "name": "aws-s3-file-to-dynamo",
+  "version": "1.0.0",
+  "description": "A deployment that creates an AWS Lambda, S3 bucket, and DynamoDB table. Once deployed, Lambda is invoked to extract data from S3 bucket and inserts data into DynamoDB.",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricL0wry/aws-s3-file-to-dynamo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EricL0wry/aws-s3-file-to-dynamo/issues"
+  },
+  "homepage": "https://github.com/EricL0wry/aws-s3-file-to-dynamo#readme",
+  "devDependencies": {
+    "serverless-s3-sync": "^1.14.3"
+  }
+}
