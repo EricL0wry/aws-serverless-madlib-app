@@ -40,6 +40,14 @@ provider:
               - Arn
             - "/*"
 
+plugins:
+  - serverless-s3-sync
+
+custom:
+  s3Sync:
+    - bucketName: "cereal-bucket"
+      localDir: "upload_files"
+
 functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
@@ -67,3 +75,11 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: "cereal-bucket"
+
+package:
+  exclude:
+    - README.md
+    - node_modules
+    - package-lock.json
+    - package.json
+    - upload_files
