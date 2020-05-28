@@ -67,3 +67,7 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: "cereal-bucket"
+
+package:
+  exclude:
+    - README.md
