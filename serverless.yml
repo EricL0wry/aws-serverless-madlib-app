@@ -56,48 +56,6 @@ resources:
           -
             AttributeName: "cerealId"
             AttributeType: "N"
-          # -
-          #   AttributeName: "name"
-          #   AttributeType: "S"
-          # -
-          #   AttributeName: "calories"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "protein"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "fat"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "sodium"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "fiber"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "carbo"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "sugars"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "potass"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "vitamins"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "shelf"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "weight"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "cups"
-          #   AttributeType: "N"
-          # -
-          #   AttributeName: "rating"
-          #   AttributeType: "N"
         KeySchema:
           -
             AttributeName: "cerealId"
