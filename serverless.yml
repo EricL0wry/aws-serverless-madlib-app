@@ -40,6 +40,9 @@ provider:
               - Arn
             - "/*"
 
+plugins:
+  - serverless-s3-sync
+
 functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
@@ -71,3 +74,6 @@ resources:
 package:
   exclude:
     - README.md
+    - node_modules
+    - package-lock.json
+    - package.json
