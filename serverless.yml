@@ -55,7 +55,7 @@ functions:
     name: updateDynamoDb
     description: Extracts data from S3 and inserts data into DynamoDB
     environment:
-      bucket: ${self:resources.Resources.cerealTable.Properties.TableName}
+      bucket: ${self:resources.Resources.cerealBucket.Properties.BucketName}
       key: "shortCereals.json"
 
 resources:
