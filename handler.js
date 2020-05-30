@@ -14,7 +14,7 @@ module.exports.updateDynamoDb = (event, context, callback) => {
     let cereals;
 
     if (err) {
-      console.log(err);
+      console.error(err);
     } else {
       cereals = JSON.parse(data.Body);
 

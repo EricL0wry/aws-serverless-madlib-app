@@ -53,7 +53,9 @@ functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
     name: updateDynamoDb
-    descriptions: Extracts data from S3 and inserts data into DynamoDB
+    description: Extracts data from S3 and inserts data into DynamoDB
+    environment:
+      bucket: ${self:resources.Resources.cerealTable.Properties.TableName}
 
 resources:
   Resources:
