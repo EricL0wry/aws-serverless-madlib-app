@@ -11,17 +11,17 @@ module.exports.updateDynamoDb = (event, context, callback) => {
   const params = { Bucket: bucketName, Key: keyName };
 
   s3.getObject(params, (err, data) => {
-    let cereals;
+    let items;
 
     if (err) {
       console.error(err);
     } else {
-      cereals = JSON.parse(data.Body);
+      items = JSON.parse(data.Body);
 
-      for (let i = 0; i < cereals.length; i++) {
-        const cereal = cereals[i];
-        console.log(cereal);
-        addItem(cereal);
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        console.log(item);
+        addItem(item);
       }
     }
 
