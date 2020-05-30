@@ -50,7 +50,7 @@ functions:
     memorySize: 512
     environment:
       bucket: ${self:resources.Resources.cerealBucket.Properties.BucketName}
-      key: "shortCereals.json"
+      key: "cereals.json"
       table: ${self:resources.Resources.cerealTable.Properties.TableName}
       region: ${self:provider.region}
 
