@@ -14,7 +14,7 @@ module.exports.updateDynamoDb = (event, context, callback) => {
     let items;
 
     if (err) {
-      console.error(err);
+      console.error('Unable to retrieve file from S3', JSON.stringify(err));
     } else {
       items = JSON.parse(data.Body);
 
