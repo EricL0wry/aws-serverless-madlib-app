@@ -7,7 +7,7 @@ const ddb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.updateDynamoDb = (event, context, callback) => {
   const bucketName = process.env.bucket;
-  const keyName = 'shortCereals.json';
+  const keyName = process.env.key;
   const params = { Bucket: bucketName, Key: keyName };
 
   s3.getObject(params, (err, data) => {
