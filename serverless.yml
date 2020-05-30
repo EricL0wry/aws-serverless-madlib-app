@@ -46,7 +46,7 @@ custom:
 functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
-    name: updateDynamoDb
+    name: ${self:provider.stage}-updateDynamoDb
     description: Extracts data from S3 and inserts data into DynamoDB
     memorySize: 512
     environment:
