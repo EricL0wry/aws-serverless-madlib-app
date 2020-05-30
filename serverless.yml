@@ -10,12 +10,7 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
-        - "dynamodb:Query"
-        - "dynamodb:Scan"
-        - "dynamodb:GetItem"
         - "dynamodb:PutItem"
-        - "dynamodb:UpdateItem"
-        - "dynamodb:DeleteItem"
       Resource:
         Fn::GetAtt:
           - cerealTable
@@ -29,9 +24,7 @@ provider:
           - Arn
     - Effect: "Allow"
       Action:
-        - "s3:DeleteObject"
         - "s3:GetObject"
-        - "s3:PutObject"
       Resource:
         Fn::Join:
           - ""
