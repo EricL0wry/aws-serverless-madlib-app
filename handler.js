@@ -1,7 +1,7 @@
 'use strict';
 
 const AWS = require('aws-sdk');
-AWS.config.update({ region: 'us-east-1' });
+AWS.config.update({ region: process.env.region });
 const s3 = new AWS.S3();
 const ddb = new AWS.DynamoDB.DocumentClient();
 
@@ -30,7 +30,7 @@ module.exports.updateDynamoDb = (event, context, callback) => {
 
 const addItem = itemObj => {
   const params = {
-    TableName: 'cerealTable',
+    TableName: process.env.table,
     Item: itemObj
   };
 
