@@ -6,7 +6,7 @@ const s3 = new AWS.S3();
 const ddb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.updateDynamoDb = (event, context, callback) => {
-  const bucketName = 'cereal-bucket';
+  const bucketName = process.env.bucket;
   const keyName = 'shortCereals.json';
   const params = { Bucket: bucketName, Key: keyName };
 
