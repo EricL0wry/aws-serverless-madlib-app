@@ -6,16 +6,12 @@ app: s3-file-to-dynamo
 provider:
   name: aws
   runtime: nodejs12.x
-  region: us-east-1
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
-        - "dynamodb:Query"
-        - "dynamodb:Scan"
-        - "dynamodb:GetItem"
         - "dynamodb:PutItem"
-        - "dynamodb:UpdateItem"
-        - "dynamodb:DeleteItem"
       Resource:
         Fn::GetAtt:
           - cerealTable
@@ -29,9 +25,7 @@ provider:
           - Arn
     - Effect: "Allow"
       Action:
-        - "s3:DeleteObject"
         - "s3:GetObject"
-        - "s3:PutObject"
       Resource:
         Fn::Join:
           - ""
@@ -46,21 +40,27 @@ plugins:
 
 custom:
   s3Sync:
-    - bucketName: "cereal-bucket"
+    - bucketName: ${self:resources.Resources.cerealBucket.Properties.BucketName}
       localDir: "upload_files"
 
 functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
-    name: updateDynamoDb
-    descriptions: Extracts data from S3 and inserts data into DynamoDB
+    name: ${self:provider.stage}-updateDynamoDb
+    description: Extracts data from S3 and inserts data into DynamoDB
+    memorySize: 512
+    environment:
+      bucket: ${self:resources.Resources.cerealBucket.Properties.BucketName}
+      key: "cereals.json"
+      table: ${self:resources.Resources.cerealTable.Properties.TableName}
+      region: ${self:provider.region}
 
 resources:
   Resources:
     cerealTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: "cerealTable"
+        TableName: ${self:provider.stage}-cerealTable
         AttributeDefinitions:
           -
             AttributeName: "cerealId"
@@ -75,7 +75,7 @@ resources:
     cerealBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: "cereal-bucket"
+        BucketName: ${self:provider.stage}-cereal-bucket
 
 package:
   exclude:

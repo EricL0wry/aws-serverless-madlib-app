@@ -18,13 +18,14 @@ class InvokeLambda {
 
   importDatabase() {
     const { region } = this.serverless.service.provider;
+    const { name } = this.serverless.service.functions.updateDynamoDb;
     const AWS = require("aws-sdk");
     const lambda = new AWS.Lambda({ region: region });
 
     this.serverless.cli.log('Processing database file');
 
     const params = {
-      FunctionName: "updateDynamoDb"
+      FunctionName: name
     };
 
     lambda.invoke(params, (err, data) => {
