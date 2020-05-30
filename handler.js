@@ -20,7 +20,6 @@ module.exports.updateDynamoDb = (event, context, callback) => {
 
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-        console.log(item);
         addItem(item);
       }
     }
@@ -36,9 +35,7 @@ const addItem = itemObj => {
 
   ddb.put(params, (err, data) => {
     if (err) {
-      console.error('Unable to add item. Error:', JSON.stringify(err, null, 2));
-    } else {
-      console.log(`Item ${params.Item.name} added!`);
+      console.error('Unable to add item. Error:', JSON.stringify(err));
     }
   });
 };
