@@ -11,12 +11,13 @@ class InvokeLambda {
       }
     }
     this.hooks = {
-      'after:deploy:deploy': this.importDatabase.bind(this),
+      'after:deploy:finalize': this.importDatabase.bind(this),
       'unpack:invoke': this.importDatabase.bind(this)
     };
   }
 
   importDatabase() {
+    console.log(this.serverless.service);
     const { region } = this.serverless.service.provider;
     const { name } = this.serverless.service.functions.updateDynamoDb;
     const AWS = require("aws-sdk");
