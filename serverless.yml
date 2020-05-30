@@ -6,7 +6,8 @@ app: s3-file-to-dynamo
 provider:
   name: aws
   runtime: nodejs12.x
-  region: us-east-1
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -39,7 +40,7 @@ plugins:
 
 custom:
   s3Sync:
-    - bucketName: "cereal-bucket"
+    - bucketName: ${self:resources.Resources.cerealBucket.Properties.BucketName}
       localDir: "upload_files"
 
 functions:
@@ -59,7 +60,7 @@ resources:
     cerealTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: "cerealTable"
+        TableName: ${self:provider.stage}-cerealTable
         AttributeDefinitions:
           -
             AttributeName: "cerealId"
@@ -74,7 +75,7 @@ resources:
     cerealBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: "cereal-bucket"
+        BucketName: ${self:provider.stage}-cereal-bucket
 
 package:
   exclude:
