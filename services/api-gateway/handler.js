@@ -1,18 +1,21 @@
 'use strict';
 
-module.exports.hello = async event => {
+module.exports.getEndpoint = async event => {
   return {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Origin': '*'
+    },
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
+        message: 'Get Request Received!',
+        input: event
       },
       null,
       2
-    ),
+    )
   };
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
