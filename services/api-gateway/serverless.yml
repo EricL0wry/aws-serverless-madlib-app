@@ -28,3 +28,5 @@ functions:
           path: /api/{ID}
           method: get
           cors: true
+    environment:
+      region: ${self:provider.region}
