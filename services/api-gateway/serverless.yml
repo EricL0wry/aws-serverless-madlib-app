@@ -30,3 +30,5 @@ functions:
           cors: true
     environment:
       region: ${self:provider.region}
+      table:
+        Fn::ImportValue: databaseTableNameExp
