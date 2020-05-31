@@ -22,7 +22,9 @@ provider:
 
 functions:
   getEndpoint:
-    handler: handler.getEndpoint
+    handler: endpoints/getItem.getEndpoint
+    name: ${self:provider.stage}-getEndpoint
+    description: Performs item lookup based on ID
     events:
       - http:
           path: /api/{ID}
@@ -32,3 +34,7 @@ functions:
       region: ${self:provider.region}
       table:
         Fn::ImportValue: databaseTableNameExp
+
+package:
+  include:
+    - ../lib/**
