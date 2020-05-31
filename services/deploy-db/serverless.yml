@@ -77,10 +77,14 @@ resources:
       Properties:
         BucketName: ${self:provider.stage}-cereal-bucket
   Outputs:
-    Value:
-      Ref: cerealTable
-    Export:
-      Name: cerealTable
+    cerealTableArn:
+      Description: "ARN for the cerealTable"
+      Value:
+        Fn::GetAtt:
+          - cerealTable
+          - Arn
+      Export:
+        Name: cerealTableArnExp
 
 package:
   exclude:
