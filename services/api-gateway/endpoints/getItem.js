@@ -19,7 +19,6 @@ module.exports.getEndpoint = async event => {
   };
 
   const item = await ddb.get(params, (err, data) => {
-    let response;
 
     if (err) {
       console.error('An unexpected error has occurred');
