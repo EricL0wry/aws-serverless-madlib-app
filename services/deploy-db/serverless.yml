@@ -76,6 +76,11 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:provider.stage}-cereal-bucket
+  Outputs:
+    Value:
+      Ref: cerealTable
+    Export:
+      Name: cerealTable
 
 package:
   exclude:

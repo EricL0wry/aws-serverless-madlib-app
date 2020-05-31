@@ -18,13 +18,14 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
+        Fn::ImportValue: cerealTable
 
 functions:
   getEndpoint:
     handler: handler.getEndpoint
     events:
       - http:
-          path: /api
+          path: /api/{ID}
           method: get
           cors: true
 #    The following are a few example events you can configure
