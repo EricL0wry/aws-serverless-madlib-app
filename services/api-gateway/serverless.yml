@@ -8,10 +8,25 @@ provider:
   runtime: nodejs12.x
   region: ${opt:region, 'us-east-1'}
   stage: ${opt:stage, 'dev'}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
 
 functions:
   getEndpoint:
     handler: handler.getEndpoint
+    events:
+      - http:
+          path: /api
+          method: get
+          cors: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
