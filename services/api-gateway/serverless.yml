@@ -1,0 +1,30 @@
+# serverless.yml
+
+service: api-gateway
+app: s3-file-to-dynamo
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        Fn::ImportValue: cerealTableArnExp
+
+functions:
+  getEndpoint:
+    handler: handler.getEndpoint
+    events:
+      - http:
+          path: /api/{ID}
+          method: get
+          cors: true

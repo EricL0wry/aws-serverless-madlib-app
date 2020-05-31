@@ -11,7 +11,7 @@ class InvokeLambda {
       }
     }
     this.hooks = {
-      'after:deploy:deploy': this.importDatabase.bind(this),
+      'after:deploy:finalize': this.importDatabase.bind(this),
       'unpack:invoke': this.importDatabase.bind(this)
     };
   }

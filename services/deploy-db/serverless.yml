@@ -9,23 +9,23 @@ provider:
   region: ${opt:region, 'us-east-1'}
   stage: ${opt:stage, 'dev'}
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: Allow
       Action:
-        - "dynamodb:PutItem"
+        - dynamodb:PutItem
       Resource:
         Fn::GetAtt:
           - cerealTable
           - Arn
     - Effect: "Allow"
       Action:
-        - "s3:ListBucket"
+        - s3:ListBucket
       Resource:
         Fn::GetAtt:
           - cerealBucket
           - Arn
-    - Effect: "Allow"
+    - Effect: Allow
       Action:
-        - "s3:GetObject"
+        - s3:GetObject
       Resource:
         Fn::Join:
           - ""
@@ -76,6 +76,15 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:provider.stage}-cereal-bucket
+  Outputs:
+    cerealTableArn:
+      Description: "ARN for the cerealTable"
+      Value:
+        Fn::GetAtt:
+          - cerealTable
+          - Arn
+      Export:
+        Name: cerealTableArnExp
 
 package:
   exclude:
