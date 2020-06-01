@@ -24,6 +24,7 @@ functions:
     handler: endpoints/getMadlib.getMadlib
     name: ${self:provider.stage}-getMadlib
     description: Performs item lookup based on ID
+    memorySize: 512
     events:
       - http:
           path: /get-madlib/{ID}
@@ -33,7 +34,6 @@ functions:
       region: ${self:provider.region}
       table:
         Fn::ImportValue: madLibTemplatesNameExp
-
-package:
-  include:
-    - ../lib/response.js
+    package:
+      include:
+        - ../lib/response.js
