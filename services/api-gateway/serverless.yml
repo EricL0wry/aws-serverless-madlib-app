@@ -28,7 +28,7 @@ functions:
     events:
       - http:
           path: /get-madlib/{ID}
-          method: get
+          method: GET
           cors: true
     environment:
       region: ${self:provider.region}
@@ -37,3 +37,24 @@ functions:
     package:
       include:
         - ../lib/response.js
+      exclude:
+        - getMadlibList.js
+  getMadlibList:
+    handler: endpoints/getMadlibList.getMadlibList
+    name: ${self:provider.stage}-getMadlibList
+    description: Returns a list of available Madlibs
+    memorySize: 512
+    events:
+      - http:
+          path: /get-madlib-list
+          method: GET
+          cors: true
+    environment:
+      region: ${self:provider.region}
+      table:
+        Fn::ImportValue: madLibTemplatesNameExp
+    package:
+      include:
+        - ../lib/response.js
+      exclude:
+        - getMadlib.js
