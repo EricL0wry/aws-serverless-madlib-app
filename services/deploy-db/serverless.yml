@@ -1,6 +1,6 @@
 # serverless.yml
 
-service: aws-deploy-dynamo-db
+service: deploy-dynamo-db
 
 provider:
   name: aws
