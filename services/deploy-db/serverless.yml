@@ -71,6 +71,21 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: "5"
           WriteCapacityUnits: "5"
+    madLibSubmissions:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.stage}-madLibSubmissions
+        AttributeDefinitions:
+          -
+            AttributeName: "userPin"
+            AttributeType: "N"
+        KeySchema:
+          -
+            AttributeName: "userPin"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: "5"
+          WriteCapacityUnits: "5"
     madLibDbBucket:
       Type: AWS::S3::Bucket
       Properties:
