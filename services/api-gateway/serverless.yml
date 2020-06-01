@@ -20,13 +20,13 @@ provider:
         Fn::ImportValue: madLibTemplatesArnExp
 
 functions:
-  getEndpoint:
-    handler: endpoints/getItem.getEndpoint
-    name: ${self:provider.stage}-getEndpoint
+  getMadlib:
+    handler: endpoints/getMadlib.getMadlib
+    name: ${self:provider.stage}-getMadlib
     description: Performs item lookup based on ID
     events:
       - http:
-          path: /api/{ID}
+          path: /get-madlib/{ID}
           method: get
           cors: true
     environment:
@@ -36,4 +36,4 @@ functions:
 
 package:
   include:
-    - ../lib/**
+    - ../lib/response.js

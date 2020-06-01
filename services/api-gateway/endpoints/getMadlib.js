@@ -5,7 +5,7 @@ AWS.config.update({ region: process.env.region });
 const ddb = new AWS.DynamoDB.DocumentClient();
 const Response = require('../lib/response');
 
-module.exports.getEndpoint = async event => {
+module.exports.getMadlib = async event => {
 
   if (!event.pathParameters || !event.pathParameters.ID) {
     return Response({ message: 'Please supply a valid ID' }, 400);
