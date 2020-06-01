@@ -99,11 +99,11 @@ resources:
           - Arn
       Export:
         Name: madLibTemplatesArnExp
-    databaseTableName:
-      Description: "Name of the database table"
+    madLibTemplatesName:
+      Description: "Name of the madLibTemplates database table"
       Value: ${self:resources.Resources.madLibTemplates.Properties.TableName}
       Export:
-        Name: databaseTableNameExp
+        Name: madLibTemplatesNameExp
 
 package:
   exclude:

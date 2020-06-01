@@ -32,7 +32,7 @@ functions:
     environment:
       region: ${self:provider.region}
       table:
-        Fn::ImportValue: databaseTableNameExp
+        Fn::ImportValue: madLibTemplatesNameExp
 
 package:
   include:
