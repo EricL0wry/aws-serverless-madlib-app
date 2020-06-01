@@ -18,22 +18,71 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         Fn::ImportValue: madLibTemplatesArnExp
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        Fn::ImportValue: madLibSubmissionsArnExp
+
 
 functions:
-  getEndpoint:
-    handler: endpoints/getItem.getEndpoint
-    name: ${self:provider.stage}-getEndpoint
+  getMadlib:
+    handler: endpoints/getMadlib.getMadlib
+    name: ${self:provider.stage}-getMadlib
     description: Performs item lookup based on ID
+    memorySize: 512
     events:
       - http:
-          path: /api/{ID}
-          method: get
+          path: /get-madlib/{ID}
+          method: GET
           cors: true
     environment:
       region: ${self:provider.region}
       table:
         Fn::ImportValue: madLibTemplatesNameExp
-
-package:
-  include:
-    - ../lib/**
+    package:
+      include:
+        - ../lib/response.js
+      exclude:
+        - endpoints/getMadlibList.js
+        - endpoints/postMadlibSubmission.js
+  getMadlibList:
+    handler: endpoints/getMadlibList.getMadlibList
+    name: ${self:provider.stage}-getMadlibList
+    description: Returns a list of available Madlibs
+    memorySize: 512
+    events:
+      - http:
+          path: /get-madlib-list
+          method: GET
+          cors: true
+    environment:
+      region: ${self:provider.region}
+      table:
+        Fn::ImportValue: madLibTemplatesNameExp
+    package:
+      include:
+        - ../lib/response.js
+      exclude:
+        - endpoints/getMadlib.js
+        - endpoints/postMadlibSubmission.js
+  postMadlibSubmission:
+    handler: endpoints/postMadlibSubmission.postMadlibSubmission
+    name: ${self:provider.stage}-postMadlibSubmission
+    description: Adds user submissions to submission table
+    memorySize: 512
+    events:
+      - http:
+          path: /submit-madlib
+          method: POST
+          cors: true
+    environment:
+      region: ${self:provider.region}
+      table:
+        Fn::ImportValue: madLibSubmissionsNameExp
+    package:
+      include:
+        - ../lib/response.js
+      exclude:
+        - endpoints/getMadlib.js
+        - endpoints/getMadlibList.js
