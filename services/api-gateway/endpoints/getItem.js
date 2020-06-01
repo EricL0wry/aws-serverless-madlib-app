@@ -11,11 +11,11 @@ module.exports.getEndpoint = async event => {
     return Response({ message: 'Please supply a valid ID' }, 400);
   }
 
-  const itemId = event.pathParameters.ID;
+  const itemId = parseInt(event.pathParameters.ID, 10);
   const table = process.env.table;
   const params = {
     TableName: table,
-    Key: parseInt(itemId, 10)
+    Key: { madLibId: itemId }
   };
 
   try {
