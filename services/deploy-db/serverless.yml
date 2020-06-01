@@ -85,6 +85,11 @@ resources:
           - Arn
       Export:
         Name: cerealTableArnExp
+    databaseTableName:
+      Description: "Name for the table"
+      Value: ${self:resources.Resources.cerealTable.Properties.TableName}
+      Export:
+        Name: databaseTableNameExp
 
 package:
   exclude:

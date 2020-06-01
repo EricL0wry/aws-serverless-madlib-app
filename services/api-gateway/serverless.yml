@@ -22,9 +22,19 @@ provider:
 
 functions:
   getEndpoint:
-    handler: handler.getEndpoint
+    handler: endpoints/getItem.getEndpoint
+    name: ${self:provider.stage}-getEndpoint
+    description: Performs item lookup based on ID
     events:
       - http:
           path: /api/{ID}
           method: get
           cors: true
+    environment:
+      region: ${self:provider.region}
+      table:
+        Fn::ImportValue: databaseTableNameExp
+
+package:
+  include:
+    - ../lib/**
