@@ -18,6 +18,12 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         Fn::ImportValue: madLibTemplatesArnExp
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        Fn::ImportValue: madLibSubmissionsArnExp
+
 
 functions:
   getMadlib:
@@ -38,7 +44,7 @@ functions:
       include:
         - ../lib/response.js
       exclude:
-        - getMadlibList.js
+        - endpoints/getMadlibList.js
   getMadlibList:
     handler: endpoints/getMadlibList.getMadlibList
     name: ${self:provider.stage}-getMadlibList
@@ -57,4 +63,4 @@ functions:
       include:
         - ../lib/response.js
       exclude:
-        - getMadlib.js
+        - endpoints/getMadlib.js
