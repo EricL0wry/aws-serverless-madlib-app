@@ -15,7 +15,7 @@ module.exports.getMadlibList = async event => {
 
   try {
     const madLibList = await ddb.scan(params).promise();
-    if (!madLibList.Item) {
+    if (!madLibList.Items) {
       return Response({ message: 'There are no Madlibs in the list' }, 404);
     }
     return Response(madLibList.Items, 200);

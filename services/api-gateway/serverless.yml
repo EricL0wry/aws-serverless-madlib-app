@@ -45,6 +45,7 @@ functions:
         - ../lib/response.js
       exclude:
         - endpoints/getMadlibList.js
+        - endpoints/postMadlibSubmission.js
   getMadlibList:
     handler: endpoints/getMadlibList.getMadlibList
     name: ${self:provider.stage}-getMadlibList
@@ -64,3 +65,24 @@ functions:
         - ../lib/response.js
       exclude:
         - endpoints/getMadlib.js
+        - endpoints/postMadlibSubmission.js
+  postMadlibSubmission:
+    handler: endpoints/postMadlibSubmission.postMadlibSubmission
+    name: ${self:provider.stage}-postMadlibSubmission
+    description: Adds user submissions to submission table
+    memorySize: 512
+    events:
+      - http:
+          path: /submit-madlib
+          method: POST
+          cors: true
+    environment:
+      region: ${self:provider.region}
+      table:
+        Fn::ImportValue: madLibSubmissionsNameExp
+    package:
+      include:
+        - ../lib/response.js
+      exclude:
+        - endpoints/getMadlib.js
+        - endpoints/getMadlibList.js
