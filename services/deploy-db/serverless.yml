@@ -1,7 +1,6 @@
 # serverless.yml
 
-service: aws-s3-file-to-dynamo
-app: s3-file-to-dynamo
+service: deploy-dynamo-db
 
 provider:
   name: aws
@@ -14,14 +13,14 @@ provider:
         - dynamodb:PutItem
       Resource:
         Fn::GetAtt:
-          - cerealTable
+          - madLibTemplates
           - Arn
     - Effect: "Allow"
       Action:
         - s3:ListBucket
       Resource:
         Fn::GetAtt:
-          - cerealBucket
+          - madLibDbBucket
           - Arn
     - Effect: Allow
       Action:
@@ -30,7 +29,7 @@ provider:
         Fn::Join:
           - ""
           - - Fn::GetAtt:
-              - cerealBucket
+              - madLibDbBucket
               - Arn
             - "/*"
 
@@ -40,56 +39,84 @@ plugins:
 
 custom:
   s3Sync:
-    - bucketName: ${self:resources.Resources.cerealBucket.Properties.BucketName}
+    - bucketName: ${self:resources.Resources.madLibDbBucket.Properties.BucketName}
       localDir: "upload_files"
 
 functions:
   updateDynamoDb:
     handler: handler.updateDynamoDb
     name: ${self:provider.stage}-updateDynamoDb
-    description: Extracts data from S3 and inserts data into DynamoDB
+    description: Extracts database JSON data from S3 and inserts data into DynamoDB
     memorySize: 512
     environment:
-      bucket: ${self:resources.Resources.cerealBucket.Properties.BucketName}
-      key: "cereals.json"
-      table: ${self:resources.Resources.cerealTable.Properties.TableName}
+      bucket: ${self:resources.Resources.madLibDbBucket.Properties.BucketName}
+      key: "madlibsDB.json"
+      table: ${self:resources.Resources.madLibTemplates.Properties.TableName}
       region: ${self:provider.region}
 
 resources:
   Resources:
-    cerealTable:
+    madLibTemplates:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:provider.stage}-cerealTable
+        TableName: ${self:provider.stage}-madLibTemplates
         AttributeDefinitions:
           -
-            AttributeName: "cerealId"
+            AttributeName: "madLibId"
             AttributeType: "N"
         KeySchema:
           -
-            AttributeName: "cerealId"
+            AttributeName: "madLibId"
             KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: "5"
           WriteCapacityUnits: "5"
-    cerealBucket:
+    madLibSubmissions:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.stage}-madLibSubmissions
+        AttributeDefinitions:
+          -
+            AttributeName: "userPin"
+            AttributeType: "N"
+        KeySchema:
+          -
+            AttributeName: "userPin"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: "5"
+          WriteCapacityUnits: "5"
+    madLibDbBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${self:provider.stage}-cereal-bucket
+        BucketName: ${self:provider.stage}-madlib-bucket
   Outputs:
-    cerealTableArn:
-      Description: "ARN for the cerealTable"
+    madLibTemplatesArn:
+      Description: "ARN for the madLibTemplates database table"
       Value:
         Fn::GetAtt:
-          - cerealTable
+          - madLibTemplates
           - Arn
       Export:
-        Name: cerealTableArnExp
-    databaseTableName:
-      Description: "Name for the table"
-      Value: ${self:resources.Resources.cerealTable.Properties.TableName}
+        Name: madLibTemplatesArnExp
+    madLibTemplatesName:
+      Description: "Name of the madLibTemplates database table"
+      Value: ${self:resources.Resources.madLibTemplates.Properties.TableName}
       Export:
-        Name: databaseTableNameExp
+        Name: madLibTemplatesNameExp
+    madLibSubmissionsArn:
+      Description: "ARN for the madLibSubmissions database table"
+      Value:
+        Fn::GetAtt:
+          - madLibSubmissions
+          - Arn
+      Export:
+        Name: madLibTemplatesArnExp
+    madLibSubmissionsName:
+      Description: "Name of the madLibSubmissions database table"
+      Value: ${self:resources.Resources.madLibTemplates.Properties.TableName}
+      Export:
+        Name: madLibSubmissionsNameExp
 
 package:
   exclude:

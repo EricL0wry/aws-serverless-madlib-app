@@ -11,11 +11,11 @@ module.exports.getEndpoint = async event => {
     return Response({ message: 'Please supply a valid ID' }, 400);
   }
 
-  const cerealId = event.pathParameters.ID;
+  const itemId = parseInt(event.pathParameters.ID, 10);
   const table = process.env.table;
   const params = {
     TableName: table,
-    Key: 1
+    Key: { madLibId: itemId }
   };
 
   try {
@@ -50,8 +50,8 @@ module.exports.getEndpoint = async event => {
   //     }
   //   })
   //     .catch(err => {
-  //       console.error(`There was an error retrieving item ${cerealId}`, err);
-  //       return Response({ message: `There was an error retrieving item ${cerealId}` }, 400);
+  //       console.error(`There was an error retrieving item ${itemId}`, err);
+  //       return Response({ message: `There was an error retrieving item ${itemId}` }, 400);
   //     });
 
   // const item = await ddb.get(params, (err, data) => {
@@ -62,7 +62,7 @@ module.exports.getEndpoint = async event => {
   //   }
 
   //   if (!data || !data.item) {
-  //     console.error(`Unable to locate item for ID ${cerealId}`);
+  //     console.error(`Unable to locate item for ID ${itemId}`);
   //     return null;
   //   }
 
@@ -70,13 +70,9 @@ module.exports.getEndpoint = async event => {
   // });
 
   // if (!item) {
-  //   return Response({ message: `Unable to locate item for ID ${cerealId}` });
+  //   return Response({ message: `Unable to locate item for ID ${itemId}` });
   // } else {
   //   return Response({ item }, 200);
   // }
 
 };
-
-// const getItem = params => {
-//   return ddb.get(params).promise();
-// };

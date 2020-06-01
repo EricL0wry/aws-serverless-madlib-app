@@ -1,7 +1,6 @@
 # serverless.yml
 
 service: api-gateway
-app: s3-file-to-dynamo
 
 provider:
   name: aws
@@ -18,7 +17,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        Fn::ImportValue: cerealTableArnExp
+        Fn::ImportValue: madLibTemplatesArnExp
 
 functions:
   getEndpoint:
@@ -33,7 +32,7 @@ functions:
     environment:
       region: ${self:provider.region}
       table:
-        Fn::ImportValue: databaseTableNameExp
+        Fn::ImportValue: madLibTemplatesNameExp
 
 package:
   include:
