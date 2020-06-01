@@ -104,6 +104,19 @@ resources:
       Value: ${self:resources.Resources.madLibTemplates.Properties.TableName}
       Export:
         Name: madLibTemplatesNameExp
+    madLibSubmissionsArn:
+      Description: "ARN for the madLibSubmissions database table"
+      Value:
+        Fn::GetAtt:
+          - madLibSubmissions
+          - Arn
+      Export:
+        Name: madLibTemplatesArnExp
+    madLibSubmissionsName:
+      Description: "Name of the madLibSubmissions database table"
+      Value: ${self:resources.Resources.madLibTemplates.Properties.TableName}
+      Export:
+        Name: madLibSubmissionsNameExp
 
 package:
   exclude:
