@@ -114,7 +114,7 @@ resources:
         Name: madLibSubmissionsArnExp
     madLibSubmissionsName:
       Description: "Name of the madLibSubmissions database table"
-      Value: ${self:resources.Resources.madLibTemplates.Properties.TableName}
+      Value: ${self:resources.Resources.madLibSubmissions.Properties.TableName}
       Export:
         Name: madLibSubmissionsNameExp
 
