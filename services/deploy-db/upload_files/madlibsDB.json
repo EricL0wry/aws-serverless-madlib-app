@@ -1,7 +1,7 @@
 [
  {
    "madLibId": 1,
-   "name": "Romeo and Juliet Intro",
+   "madLibName": "Romeo and Juliet Intro",
    "text": "Two $$word01$$, both alike in dignity, in fair $$word02$$, where we lay our scene. From ancient $$word03$$ break to new mutiny, where civil blood makes civil hands unclean. From forth the fatal loins of these two foes a pair of star-cross'd $$word04$$ take their life. Whole misadventured piteous overthrows do with their $$word05$$ bury their parents' strife. The fearful passage of their $$word06$$ love, and the continuance of their parents` rage, which, but their children's end, nought could $$word07$$, is now the $$word08$$ hours' traffic of our stage. The which if you with $$word09$$ $$word10$$ attend, what here shall $$word11$$, our toil shall strive to mend.",
    "word01": "Plural Noun",
    "word02": "Place",
@@ -17,7 +17,7 @@
  },
  {
    "madLibId": 2,
-   "name": "Pizza Parlor",
+   "madLibName": "Pizza Parlor",
    "text": "Come on over to $$word01&&'s Pizza Parlor where you can enjoy you favorite $$word02&&-dish pizzas. You can try our famous $$word03&&-lovers pizza, or select from our list of $$word04&& toppings, including sauteed $$word05&&, $$word06&&, and many more. Our crusts are hand-$$word07&& and basted in $$word08&& to make them seem more $$word09&&-made.",
    "word01": "Name",
    "word02": "Adjective",
@@ -31,7 +31,7 @@
  },
  {
    "madLibId": 3,
-   "name": "Lord of the Rings Part I",
+   "madLibName": "Lord of the Rings Part I",
    "text": "In J.R.R. Tolkien's famous trilogy, Lord of the $$word01$$s, the first book is called Fellowship of the $$word01$$. In this book a group of $$word02$$ Hobbits flee their hometown. They eventually join into a fellowship made up of $$word03$$, Elves and $$word04$$, with the goal of $$word05$$ the One $$word01$$. They begin by traveling through the $$word06$$ mountains, where $$word07$$ the $$word08$$ is lost. They continue on to the forest, where the queen of the $$word09$$ gives them $$word10$$ to ride down the river. At the end of the book, Merri and Pippin get captured by $$word11$$, and Frodo is $$word12$$ one of his fellow $$word13$$ and leaves on his own (but with Sam).",
    "word01": "Noun",
    "word02": "Adjctive",
