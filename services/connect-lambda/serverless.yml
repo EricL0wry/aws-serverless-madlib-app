@@ -1,0 +1,33 @@
+# serverless.yml
+
+service: connect-lambda
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        Fn::ImportValue: madLibSubmissionsArnExp
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        Fn::ImportValue: madLibTemplatesArnExp
+
+functions:
+  retrieveMadlib:
+    handler: endpoints/handler.retrieveMadlib
+    name: ${self:provider.stage}-retrieveMadlib
+    description: Retrieves and processes users Madlib
+    memorySize: 512
+    environment:
+      region: ${self:provider.region}
+      submissionTable:
+        Fn::ImportValue: madLibSubmissionsNameExp
+      templateTable:
+        Fn::ImportValue: madLibTemplatesNameExp
