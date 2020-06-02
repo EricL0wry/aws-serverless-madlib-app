@@ -13,6 +13,11 @@ provider:
         - dynamodb:GetItem
       Resource:
         Fn::ImportValue: madLibSubmissionsArnExp
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        Fn::ImportValue: madLibTemplatesArnExp
 
 functions:
   retrieveMadlib:
@@ -22,5 +27,7 @@ functions:
     memorySize: 512
     environment:
       region: ${self:provider.region}
-      table:
+      submissionTable:
         Fn::ImportValue: madLibSubmissionsNameExp
+      templateTable:
+        Fn::ImportValue: madLibTemplatesNameExp
