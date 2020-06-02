@@ -1,18 +1,35 @@
 'use strict';
 
-module.exports.hello = async event => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+const AWS = require('aws-sdk');
+AWS.config.update({ region: process.env.region });
+const ddb = new AWS.DynamoDB.DocumentClient();
+const Build = require('./buildMadlib');
+
+module.exports.retrieveMadlib = (event, context, callback) => {
+
+  const pin = event.pin;
+
+  const table = process.env.table;
+  const params = {
+    TableName: table,
+    Key: { userPin: pin }
   };
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+  let responseObj;
+
+  ddb.get(params, (err, data) => {
+
+    if (err) {
+      console.error('There was an error retrieving the item', err);
+    } else {
+      if (data.Item) {
+        responseObj = data.Item;
+      } else {
+        responseObj = { result: false };
+        callback(null, responseObj);
+      }
+    }
+
+  });
+
 };
