@@ -6,7 +6,7 @@ const ddb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.retrieveMadlib = (event, context, callback) => {
 
-  const pin = event.pin;
+  const pin = parseInt(event.Details.Parameters.userPin, 10);
 
   const table = process.env.submissionTable;
   const params = {
@@ -17,7 +17,6 @@ module.exports.retrieveMadlib = (event, context, callback) => {
   let responseObj;
 
   ddb.get(params, (err, data) => {
-
     if (err) {
       console.error('There was an error retrieving the item', err);
     } else {
@@ -36,7 +35,6 @@ module.exports.retrieveMadlib = (event, context, callback) => {
         };
 
         ddb.get(parameters, (err, data) => {
-
           if (err) {
             console.error('There was an error retrieving the item', err);
           } else {
@@ -60,13 +58,10 @@ module.exports.retrieveMadlib = (event, context, callback) => {
             }
           }
         });
-
       } else {
         responseObj = { result: false };
         callback(null, responseObj);
       }
     }
-
   });
-
 };
