@@ -47,6 +47,7 @@ module.exports.retrieveMadlib = (event, context, callback) => {
               });
 
               responseObj = {
+                result: true,
                 userName: userName,
                 madLibName: madLibName,
                 madLibText: madLibText
