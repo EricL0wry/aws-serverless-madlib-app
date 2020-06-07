@@ -46,5 +46,56 @@
    "word11": "Plural Animal",
    "word12": "Verb Ending in 'ed'",
    "word13": "Plural Noun"
- }
+ },
+ {
+   "madLibId": 4,
+   "madLibName": "Bowling",
+   "text": "Almost every community in America now has a bowling $$word01$$ because bowling has become very $$word02$$ with young $$word03$$. Most of them become very $$word04$$ at the game. The main object of the game is to roll a heavy bowling $$word05$$ down the alley and knock down the $$word06$$ pins which are at the other end. If you knock them down in one roll, it's called a $$word07$$. If it takes two rolls, it's called a $$word08$$. Many alleys have automatic $$word09$$ setters. Others hire $$word10$$ who set the pins by $$word11$$. The most important thing to remember when bowling is to make sure you have a good grip on the $$word12$$ or you're liable to drop it on your $$word13$$.",
+   "word01": "Place",
+   "word02": "Adjective",
+   "word03": "Plural Noun",
+   "word04": "Adjective",
+   "word05": "Noun",
+   "word06": "Number",
+   "word07": "Funny Noise",
+   "word08": "Funny Noise",
+   "word09": "Noun",
+   "word10": "Plural Noun",
+   "word11": "Noun",
+   "word12": "Noun",
+   "word13": "Body Part"
+ },
+ {
+   "madLibId": 5,
+   "madLibName": "Rock Music",
+   "text": "Young people today would rather listen to a good rock music concert than to Johann Sebastian $$word01$$ or to Ludvig von $$word02$$. Rock music is played by $$word03$$ groups of young men who wear their hair below their $$word04$$. They also wear very odd and colorful $$word05$$ and often have beards. The groups have attractive names such as 'The $$word06$$' or '$$word07$$ and The Three $$word08$$.' They usually play electric $$word09$$. One member of the group usually sits on a raised platform and sets the rhythm by beating his $$word10$$. The songs are mostly about some fellow who has been rejected by his $$word11$$. The songs are very sad and when people hear them, they often get tears in their $$word12$$.",
+   "word01": "Last Name of Person",
+   "word02": "Last Name of Person",
+   "word03": "Adjective",
+   "word04": "Plural Noun",
+   "word05": "Plural Noun",
+   "word06": "Plural Animal",
+   "word07": "Celebrity",
+   "word08": "Plural Noun",
+   "word09": "Plural Noun",
+   "word10": "Noun",
+   "word11": "Noun",
+   "word12": "Plural Noun"
+ },
+ {
+   "madLibId": 6,
+   "madLibName": "Little Red Riding Hood",
+   "text": "One day, Little $$word01$$ Riding Hood was going through the forest carrying a basket of $$word02$$ for her grandmother. Suddenly, she met a big $$word03$$ wolf. '$$word04$$!' said the wolf. 'Where are you going, little $$word05$$?' 'I'm going to my grandmother's house,' she said. Then the wolf $$word06$$ away. When Miss Riding Hood got to her grandmother's house, the wolf was in bed dressed like her grandmother. 'My, Grandmother,' she said, 'What big $$word07$$ you have.' 'The better to $$word08$$ you with,' said the wolf. 'And Grandmother,' she said, 'What big $$word09$$ you have.' The wolf said, 'The better to $$word10$$ you with.' And then she said, 'What big $$word11$$ you have, Grandmother.' But the wolf said nothing. He had just died of indigestion from eating Grandmother.",
+   "word01": "Color",
+   "word02": "Plural Noun",
+   "word03": "Adjective",
+   "word04": "Exclamation",
+   "word05": "Silly Word",
+   "word06": "Past Tense Verb",
+   "word07": "Plural Noun",
+   "word08": "Verb",
+   "word09": "Plural Noun",
+   "word10": "Verb",
+   "word11": "Plural Noun"
+}
 ]
