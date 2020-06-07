@@ -46,5 +46,23 @@
    "word11": "Plural Animal",
    "word12": "Verb Ending in 'ed'",
    "word13": "Plural Noun"
+ },
+ {
+   "madLibId": 4,
+   "madLibName": "Bowling",
+   "text": "Almost every community in America now has a bowling $$word01$$ because bowling has become very $$word02$$ with young $$word03$$. Most of them become very $$word04$$ at the game. The main object of the game is to roll a heavy bowling $$word05$$ down the alley and knock down the $$word06$$ pins which are at the other end. If you knock them down in one roll, it's called a $$word07$$. If it takes two rolls, it's called a $$word08$$. Many alleys have automatic $$word09$$ setters. Others hire $$word10$$ who set the pins by $$word11$$. The most important thing to remember when bowling is to make sure you have a good grip on the $$word12$$ or you're liable to drop it on your $$word13$$.",
+   "word01": "Place",
+   "word02": "Adjective",
+   "word03": "Plural Noun",
+   "word04": "Adjective",
+   "word05": "Noun",
+   "word06": "Number",
+   "word07": "Funny Noise",
+   "word08": "Funny Noise",
+   "word09": "Noun",
+   "word10": "Plural Noun",
+   "word11": "Noun",
+   "word12": "Noun",
+   "word13": "Body Part"
  }
 ]
